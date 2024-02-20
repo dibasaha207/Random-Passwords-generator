@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Random Password generator</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='style.css'>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate a <br> <span> Random Password </span></h1>
+        <div class="display">
+            <input type="text" id="password" placeholder="Enter a password">
+            <img src="copy.svg" onclick="copypass()">
+        </div>
+        <button onclick="createpass()"> <img src="bulb.svg"> Generate Password</button>
+    </div>
+
+    <script>
+        const pass = document.getElementById("password");
+        const len = 12;
+
+        const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lower = "abcdefghijklmnopqrstuvwxyz";
+        const num = "0123456789";
+        const sym = "~`!@#$%^&*()_+={:;<>?/";
+        const all = upper + lower + num + sym;
+
+        function createpass() {
+            let password = "";
+            password += upper[Math.floor(Math.random() * upper.length)];
+            password += lower[Math.floor(Math.random() * lower.length)];
+            password += num[Math.floor(Math.random() * num.length)];
+            password += sym[Math.floor(Math.random() * sym.length)];
+
+            while (len > password.length) {
+                password += all[Math.floor(Math.random() * all.length)];
+            }
+            pass.value = password;
+        }
+
+        function copypass() {
+            pass.select();
+            document.execCommand("copy");
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
